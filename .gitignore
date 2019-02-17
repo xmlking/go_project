@@ -39,5 +39,5 @@ _test
 
 *.prof
 
-great1
-great2
+./great1
+./great2
