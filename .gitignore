@@ -47,5 +47,6 @@ _test
 *.prof
 
 # Binaries
+bin/
 ./great1
 ./great2
