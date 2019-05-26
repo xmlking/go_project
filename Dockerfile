@@ -1,6 +1,6 @@
 # Accept the Go version for the image to be set as a build argument.
 # Default to Go 1.11
-ARG GO_VERSION=1.11
+ARG GO_VERSION=1.12
 
 # First stage: build the executable.
 FROM golang:${GO_VERSION}-alpine AS builder
@@ -43,6 +43,9 @@ RUN go build \
 
 # Final stage: the running container.
 FROM scratch AS final
+
+# copy 1 MiB busybox executable
+COPY --from=busybox:1.30.1 /bin/busybox /bin/busybox
 
 # Import the user and group files from the first stage.
 COPY --from=builder /user/group /user/passwd /etc/
